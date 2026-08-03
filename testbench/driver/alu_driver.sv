@@ -4,7 +4,7 @@ class alu_driver extends uvm_driver #(alu_sequence_item);
     `uvm_component_utils(alu_driver)
 
     // virtual interface decleration
-    virtual alu_interface vif;
+    virtual alu_interface.DRV vif;
 
     // class constructor
     function new (string name="alu_driver", uvm_component parent);
@@ -13,7 +13,7 @@ class alu_driver extends uvm_driver #(alu_sequence_item);
 
     // build_phase: vif config
     function void build_phase(uvm_phase uvm_phase);
-        if(!uvm_config_db #(virtual alu_interface)::get(this,"","vif",vif))
+        if(!uvm_config_db #(virtual alu_interface.DRV)::get(this,"","vif",vif))
             `uvm_fatal("NOVIF",{"virtual interface must be set for:", get_full_name(),".vif"})
     endfunction
 
