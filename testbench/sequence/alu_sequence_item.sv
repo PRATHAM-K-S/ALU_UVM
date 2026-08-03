@@ -12,6 +12,15 @@ class alu_sequence_item extends uvm_sequence_item;
     rand bit [`CW-1:0] CMD;
     rand bit [1:0] INP_VALID;  
 
+    // DUT output signals
+    logic [(`DW*2)-1:0] RES;
+    bit COUT;
+    bit OFLOW;
+    bit G;
+    bit E;
+    bit L;
+    bit ERR;
+
     // class constructor
     function new(string name);
         super.new(name);
@@ -32,6 +41,13 @@ class alu_sequence_item extends uvm_sequence_item;
         CIN = rhs_.CIN;
         CMD = rhs_.CMD;
         INP_VALID = rhs_.INP_VALID;
+        RES = rhs_.RES;
+        COUT = rhs_.COUT;
+        OFLOW = rhs_.OFLOW;
+        G = rhs_.G;
+        E = rhs_.E;
+        L = rhs_.L;
+        ERR = rhs_.ERR;        
     endfunction
 
     // convert2string method
@@ -45,8 +61,15 @@ class alu_sequence_item extends uvm_sequence_item;
                 MODE \t %0d \n
                 CIN \t %0d \n
                 CMD \t %0d \n
-                INP_VALID \t %0d \n",
-                s, OPA, OPB, CE, MODE, CIN, CMD, INP_VALID
+                INP_VALID \t %0d \n
+                RES \t %0d \n
+                COUT \t %0b \n
+                OFLOW \t %0b \n
+                G \t %0b \n
+                E \t %0b \n
+                L \t %0b \n
+                ERR \t %0b \n",
+                s, OPA, OPB, CE, MODE, CIN, CMD, INP_VALID, RES, COUT, OFLOW, G, E, L, ERR
         );
         return s;
     endfunction
