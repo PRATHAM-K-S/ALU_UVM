@@ -13,8 +13,10 @@ class alu_driver extends uvm_driver #(alu_sequence_item);
 
     // build_phase: vif config
     function void build_phase(uvm_phase uvm_phase);
-        if(!uvm_config_db #(virtual alu_interface.DRV)::get(this,"","vif",vif))
+        if(!uvm_config_db #(virtual alu_interface.DRV)::get(this,"","vif",vif)) begin
             `uvm_fatal("NOVIF",{"virtual interface must be set for:", get_full_name(),".vif"})
+            return;
+        end
     endfunction
 
     // run_phase: handle driving signals to DUT
